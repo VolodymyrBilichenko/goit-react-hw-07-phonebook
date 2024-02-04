@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from '../redux/createSlice';
+import { deleteContact } from '../../redux/createSlice';
 
 const Contactslist = () => {
   const contacts = useSelector(state => state.contacts.contacts.items);
