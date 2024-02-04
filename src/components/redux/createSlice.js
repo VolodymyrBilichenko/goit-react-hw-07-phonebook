@@ -1,48 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import {allContactsGet, addContacts, removeContacts} from '../api/api'
-
-export const fetchContacts = createAsyncThunk(
-  'contact/fetchContacts',
-  async (_, thunkApi) => {
-
-    try{
-      const response = await allContactsGet()
-    
-    return response
-
-    } catch(err) {
-      thunkApi.rejectWithValue(err.message)
-    }
-    
-  }
-
-)
-export const fetchContactsAdd = createAsyncThunk(
-  'contacts/addFetchContacts',
-  async (data, thunkApi) => {
-    try {
-      const response = await addContacts(data)
-      console.log(response);
-      return response
-    } catch (err) {
-      thunkApi.rejectWithValue(err.message)
-    }
-  }
-  
-)
-
-export const fetchDeleteContacts = createAsyncThunk(
-  'contacts/deleteFetchContacts',
-  async (id, thunkApi) => {
-    try{
-      const response = await removeContacts(id)
-    return response.id
-    } catch(err){
-      thunkApi.rejectWithValue(err.message)
-    }
-    
-  }
-)
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchContacts, fetchContactsAdd, fetchDeleteContacts } from './createAsyncThunk';
 
 const contactsSlice = createSlice({
 
@@ -55,16 +12,6 @@ const contactsSlice = createSlice({
     },
     filter: '',
   
-  },
-  reducers: {
-    deleteContact: 
-    (state, {payload}) => {
-    state.contacts.items = state.contacts.items.filter(contact => contact.id !== payload) 
-  },
-    updateFilter: (state, action) => {
-      state.filter = action.payload
-      
-  }
   },
   extraReducers: builder => {
     builder
@@ -118,12 +65,6 @@ const contactsSlice = createSlice({
 })
 
 
-
-
-
-
 export const contactReducer = contactsSlice.reducer;
-
-
 
 export const { createContact, deleteContact, updateFilter } = contactsSlice.actions;

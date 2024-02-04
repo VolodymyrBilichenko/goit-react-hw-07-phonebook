@@ -4,7 +4,7 @@ import style from './contactform.module.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
-import { fetchContactsAdd } from '../redux/createSlice';
+import { fetchContactsAdd } from '../redux/createAsyncThunk';
 
 const Contactform = () => {
   const dispatch = useDispatch();

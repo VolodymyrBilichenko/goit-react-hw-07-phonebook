@@ -4,7 +4,7 @@ import Contactslist from './components/contactList/contactList';
 import ContactFilter from './components/contactFilter/contactFilter';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import {fetchContacts} from './components/redux/createSlice'
+import { fetchContacts } from './components/redux/createAsyncThunk'
 export const App = () =>  {
   const dispatch = useDispatch();
   useEffect(() => {
